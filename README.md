@@ -31,3 +31,13 @@ Some requirements were not met due to time restrictions, but source code can be 
 </lu>
 <br></br>
 <i>As alternative, you can create executable for client application and run server in terminal.</i>
+
+<h1 align=center>UML Diagrams</h1>
+<h3 align=center>Use Case Diagram</h3>
+<img src="https://github.com/Johnypier/Restaurant-Advisor/blob/main/UML/UseCaseDiagram.png" align=center>
+<br></br>
+<h3 align=center>Class Diagram</h3>
+<img src="https://github.com/Johnypier/Restaurant-Advisor/blob/main/UML/ClassDiagram.png" align=center>
+<br></br>
+<h3 align=center>Component Diagram</h3>
+<img src="https://github.com/Johnypier/Restaurant-Advisor/blob/main/UML/ComponentDiagram.png" align=center>
