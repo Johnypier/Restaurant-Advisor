@@ -1,0 +1,19 @@
+.text-area {
+  -fx-background-color: transparent;
+  -fx-font-family: Yu Gothic;
+  -fx-font-size: 20;
+  -fx-text-fill: rgb(255, 255, 255);
+  -fx-padding: 10;
+}
+
+.text-area .scroll-pane {
+  -fx-background-color: transparent;
+}
+
+.text-area .scroll-pane .viewport {
+  -fx-background-color: transparent;
+}
+
+.text-area .scroll-pane .content {
+  -fx-background-color: transparent;
+}

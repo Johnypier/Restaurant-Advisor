@@ -1,0 +1,103 @@
+plugins {
+    id 'org.springframework.boot' version '2.7.1'
+    id 'io.spring.dependency-management' version '1.0.12.RELEASE'
+    id 'java'
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.12'
+}
+
+version = '2.0'
+sourceCompatibility = '17'
+compileJava.options.encoding = 'UTF-8'
+compileTestJava.options.encoding = 'UTF-8'
+
+allprojects{
+    repositories {
+        mavenCentral()
+    }
+}
+
+application {
+    mainClassName = 'de.tum.in.ase.eist.Starter'
+}
+
+configurations {
+    serverImplementation.extendsFrom(implementation)
+    clientImplementation.extendsFrom(implementation)
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-test:2.7.1'
+    implementation 'org.springframework.boot:spring-boot-starter-web:2.7.1'
+    implementation 'org.springframework.boot:spring-boot-starter-webflux:2.7.0'
+    implementation 'org.springframework.boot:spring-boot-starter:2.7.1'
+    implementation 'org.jsoup:jsoup:1.15.1'
+    implementation 'org.springframework:spring-web:5.3.21'
+    implementation 'org.springframework:spring-context:5.3.21'
+    implementation 'org.springframework:spring-webmvc:5.3.21'
+    implementation 'org.springframework:spring-test:5.3.21'
+    implementation 'javax.servlet:javax.servlet-api:4.0.1'
+    serverImplementation 'org.springframework.boot:spring-boot-starter-web:2.7.1'
+    clientImplementation 'org.springframework.boot:spring-boot-starter-webflux:2.7.0'
+}
+
+javafx {
+    version = '17.0.2'
+    modules = [ 'javafx.base', 'javafx.controls', 'javafx.fxml', 'javafx.media', 'javafx.web' ]
+    configuration = 'clientImplementation'
+}
+
+sourceSets {
+    common{
+        java{
+            srcDir 'src/common/java'
+        }
+    }
+    client {
+        java {
+            srcDir 'src/client/java'
+        }
+        resources {
+            srcDir 'src/resources'
+        }
+        compileClasspath += common.output
+        runtimeClasspath += common.output
+    }
+    server{
+        java {
+            srcDir 'src/server/java'
+        }
+        resources{
+            srcDir 'resources'
+        }
+        compileClasspath += common.output
+        runtimeClasspath += common.output
+    }
+    test {
+        java {
+            srcDir 'src/test/java'
+        }
+        resources {
+            srcDir 'src/test/resources'
+        }
+        compileClasspath += common.output
+        runtimeClasspath += common.output
+        compileClasspath += server.output
+        runtimeClasspath += server.output
+        compileClasspath += client.output
+        runtimeClasspath += client.output
+    }
+}
+
+processResources {
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
+}
+
+rootProject.tasks.named("processServerResources") {
+    duplicatesStrategy = 'include'
+}
+
+test {
+    defaultCharacterEncoding = 'UTF-8'
+    useJUnitPlatform()
+}
