@@ -16,12 +16,12 @@ This application is used to browse different types of restaurants in Munich, see
   <li>Jsoup 1.51.1</li>
 </lu>
 <br></br>
-<i>Detailed list of dependencies can be found in documentation.</i>
+<i>Detailed list of dependencies can be found in <a href="https://github.com/Johnypier/Restaurant-Advisor/tree/main/Documentation">documentation</a>.</i>
 
 <h2 align=center>Problems</h2>
 Some requirements were not met due to time restrictions, but source code can be easily improved. Web scraping in our example is not complicated, because html document contains json inside of it which saved us a lot of time. Actual data extraction can be complex. Reservation implementation is not real, because it requires collaboration with real restaurants, which is unrealistic in case of university project.
 <br></br>
-<i>More information can be found in documentation</i>
+<i>More information can be found in <a href="https://github.com/Johnypier/Restaurant-Advisor/tree/main/Documentation">documentation</a></i>
 
 <h2 align=center>How to use?</h2>
 <lu>
