@@ -1,0 +1,51 @@
+plugins {
+    id 'java' apply true
+    id 'application' apply true
+    id 'org.springframework.boot' version '3.1.0' apply true
+    id 'io.spring.dependency-management' version '1.1.0' apply true
+}
+
+version = '3.0'
+sourceCompatibility = '17'
+compileJava.options.encoding = 'UTF-8'
+compileTestJava.options.encoding = 'UTF-8'
+jar.enabled = false;
+bootJar.enabled = true;
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation project(path: ':Shared', configuration: 'default')
+    // Miscellaneous
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.14.2'
+    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.14.2'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.14.2'
+    implementation 'org.jsoup:jsoup:1.15.4'
+    implementation 'org.json:json:20230227'
+    implementation 'javax.servlet:javax.servlet-api:4.0.1'
+    // Spring Boot
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    implementation 'org.springframework.boot:spring-boot-starter'
+    // Tests
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.9.2'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework:spring-test'
+    testImplementation project(':Shared')
+}
+
+application {
+    mainModule = 'restaurant.advisor.server'
+    mainClass = 'server.ServerApplication'
+}
+
+processResources {
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
+}
+
+tasks.named('test') {
+    // Use JUnit Platform for unit tests.
+    useJUnitPlatform()
+}

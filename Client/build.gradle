@@ -1,0 +1,58 @@
+import org.gradle.nativeplatform.platform.internal.DefaultNativePlatform
+
+plugins {
+    id 'java' apply true
+    id 'application' apply true
+    id 'org.springframework.boot' version '3.1.0' apply true
+    id 'io.spring.dependency-management' version '1.1.0' apply true
+}
+
+version = '3.0'
+sourceCompatibility = '17'
+compileJava.options.encoding = 'UTF-8'
+compileTestJava.options.encoding = 'UTF-8'
+jar.enabled = false;
+bootJar.enabled = true;
+
+repositories {
+    mavenCentral()
+}
+
+def javaFXPlatform = getJavaFXPlatform()
+def javaFXVersion = '19.0.2.1'
+
+dependencies {
+    implementation project(path: ':Shared', configuration: 'default')
+    // Miscellaneous
+    implementation 'com.google.guava:guava:31.1-jre'
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.14.2'
+    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.14.2'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.14.2'
+    // JavaFX
+    implementation "org.openjfx:javafx-base:${javaFXVersion}:${javaFXPlatform}"
+    implementation "org.openjfx:javafx-controls:${javaFXVersion}:${javaFXPlatform}"
+    implementation "org.openjfx:javafx-graphics:${javaFXVersion}:${javaFXPlatform}"
+    implementation "org.openjfx:javafx-media:${javaFXVersion}:${javaFXPlatform}"
+    implementation "org.openjfx:javafx-web:${javaFXVersion}:${javaFXPlatform}"
+    // Spring Boot
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    implementation 'org.springframework.boot:spring-boot-starter'
+}
+
+application {
+    mainModule = 'restaurant.advisor.client'
+    mainClass = 'client.app.ClientApplication'
+}
+
+private static String getJavaFXPlatform() {
+    def currentOS = DefaultNativePlatform.currentOperatingSystem;
+    if (currentOS.isWindows()) {
+        return 'win'
+    } else if (currentOS.isLinux()) {
+        return 'linux'
+    } else if (currentOS.isMacOsX()) {
+        return 'mac'
+    }
+    return null
+}

@@ -1,0 +1,4 @@
+rootProject.name = 'Restaurant Advisor'
+include('Shared')
+include('Server')
+include('Client')
