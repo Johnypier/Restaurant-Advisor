@@ -21,6 +21,7 @@ information such as: location, opening hours, reviews and so on. It can be modif
 - Some project requirements were not met due to time restrictions, but the source code can be improved to implement all of them. 
 - Web scraping is not complicated, because the html document of the Yelp website contained json with required data inside of it, and it could be 
 easily extracted.
+- Booking of the table in the restaurants is not implemented.
 
 ## How to launch the project?
 First variant:
